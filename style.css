@@ -52,6 +52,8 @@ body{
 
 .nav a:hover{opacity:1; border-color:rgba(255,255,255,.08); background:rgba(255,255,255,.05)}
 
+
+
 /* Sidebar (compact icon-only) */
 
 .sidebar{
@@ -402,3 +404,125 @@ body.mode-anu #view-home .logo-tile { opacity:0; visibility:hidden; }
 body.mode-anu .site-footer { text-align: left; }
 
 .site-footer:hover { opacity: 1; }
+/* --- admin modal styles (append to style.css) --- */
+.admin-modal{
+  position:fixed; inset:0; display:none; place-items:center; background: rgba(0,0,0,0.45); z-index:1200;
+}
+.admin-modal[aria-hidden="false"]{ display:grid; }
+.admin-panel{
+  width:min(920px, 96%); max-width:920px; background: linear-gradient(180deg,#071026,#07182b); border-radius:12px; padding:1rem 1.2rem; color:var(--text); box-shadow:0 24px 48px rgba(0,0,0,.6);
+}
+.admin-panel header{ display:flex; align-items:center; justify-content:space-between; gap:.8rem; margin-bottom:8px; }
+.admin-panel h3{ margin:0; font-size:1.1rem; color:#bfe8ff; }
+.admin-form{ display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:.6rem; align-items:start; margin-bottom:10px; }
+.admin-form label{ display:block; font-size:.9rem; color:var(--muted); }
+.admin-form input, .admin-form select{ width:100%; padding:.55rem .6rem; margin-top:.35rem; border-radius:8px; background: rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); color:var(--text); }
+.admin-list h4{ margin:8px 0; color:#9fc7ff; }
+.admin-entry{ display:flex; gap:.6rem; align-items:center; justify-content:space-between; padding:.45rem .6rem; border-radius:8px; background: rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.04); margin-bottom:6px; font-size:.95rem; }
+.admin-entry small{ color:var(--muted); display:block; font-size:.8rem; }
+.admin-entry button{ background:transparent; border:1px solid rgba(255,255,255,.06); padding:.35rem .5rem; border-radius:8px; color:var(--text); cursor:pointer; }
+/* ---- auth modal (login) ---- */
+.auth-modal { position:fixed; inset:0; display:none; place-items:center; background: rgba(0,0,0,0.45); z-index:1200; }
+.auth-modal[aria-hidden="false"] { display:grid; }
+.auth-panel { width:320px; background: linear-gradient(180deg,#071026,#07182b); border-radius:12px; padding:1rem; color:var(--text); box-shadow:0 24px 48px rgba(0,0,0,.6); }
+.auth-panel h3 { margin:0 0 .4rem 0; color:#bfe8ff; }
+.auth-form { display:grid; gap:.6rem; }
+.auth-form label { color:var(--muted); font-size:.95rem; display:block; }
+.auth-form input { width:100%; padding:.55rem .6rem; margin-top:.25rem; border-radius:8px; background: rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); color:var(--text); }
+
+/* small admin tweaks (if not already present) */
+.admin-panel header { display:flex; align-items:center; justify-content:space-between; gap:.8rem; margin-bottom:8px; }
+.admin-panel h3 { margin:0; font-size:1.1rem; color:#bfe8ff; }
+.admin-list .admin-entry button { margin-left:.4rem; }
+/* -----------------------
+   Back button + bar (PATCH)
+   Replace any existing .bar, .back-btn, .view-title rules
+   ----------------------- */
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 12px 0;
+  padding: 6px 2px;
+  /* keep bar visually separate without taking space */
+  background: transparent;
+  /* use flexible layout so title can grow and wrap nicely */
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Back button (small, compact, consistent with site style) */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.45rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
+  min-width: 56px;
+  line-height: 1;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+}
+
+/* Icon-like arrow styling if you use a plain arrow char; keep it subtle */
+.back-btn::before {
+  content: "←";
+  display: inline-block;
+  font-weight: 800;
+  margin-right: 2px;
+  opacity: 0.95;
+}
+
+/* Hover / active feedback */
+.back-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.06);
+}
+.back-btn:active {
+  transform: translateY(0);
+  background: rgba(255,255,255,0.045);
+}
+
+/* Title in the same bar — allow it to take remaining space */
+.view-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text);
+  /* let it use remaining space; vertically center */
+  flex: 1 1 auto;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* If you want the title centered on wide screens while keeping back-button to left: */
+/* uncomment the block below if you prefer center titles on desktop */
+/*
+@media (min-width: 880px) {
+  .bar { justify-content: center; }
+  .back-btn { position: absolute; left: 14px; }
+  .view-title { text-align: center; max-width: 720px; }
+}
+*/
+
+/* Mobile-friendly adjustments */
+@media (max-width: 760px) {
+  .back-btn {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.92rem;
+    min-width: 48px;
+    border-radius: 9px;
+  }
+  .view-title {
+    font-size: 1rem;
+  }
+}
