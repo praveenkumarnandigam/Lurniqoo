@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Lurniqo</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lurniqo</title>
+
+  <!-- ✅ Favicon (GitHub Hosted) -->
+  <link rel="icon" type="image/x-icon" href="https://github.com/praveen-2442/Lurniqoo/blob/main/favicon.ico?raw=1">
+  <link rel="shortcut icon" href="https://github.com/praveen-2442/Lurniqoo/blob/main/favicon.ico?raw=1" type="image/x-icon">
+  <link rel="apple-touch-icon" href="https://github.com/praveen-2442/Lurniqoo/blob/main/favicon.ico?raw=1">
+
+</head>
+
+<body>
+
+  <!-- Top header (Home only) -->
+  <header class="site-header" id="topbar" role="banner">
+    <nav class="nav" aria-label="Primary">
+      <a href="#" data-route="home">Home</a>
+      <a href="#" data-route="syllabus">Syllabus</a>
+      <a href="#" data-route="faqs">FAQs</a>
+      <a href="#" data-route="about">About</a>
+    </nav>
+  </header>
+
+  <!-- Compact icon-only sidebar (shown in ANU-related views) -->
+  <aside class="sidebar compact" id="sidebar" aria-label="Sidebar">
+    <a class="brand" href="#" data-route="home" aria-label="Home">
+      <div class="logo-badge" title="Home"><span>L</span></div>
+    </a>
+    <nav class="side-nav" aria-label="Primary">
+      <a href="#" data-route="home" title="Home" aria-label="Home">🏠</a>
+      <a href="#" data-route="syllabus" title="Syllabus" aria-label="Syllabus">📄</a>
+      <a href="#" data-route="faqs" title="FAQs" aria-label="FAQs">❓</a>
+      <a href="#" data-route="about" title="About" aria-label="About">ℹ️</a>
+    </nav>
+  </aside>
+
+  <!-- HOME VIEW -->
+  <main id="view-home" class="view active">
+    <div class="home-brand" aria-label="Lurniqo">
+      <div class="logo-tile" id="homeLogo"><span>L</span></div>
+      <h1 class="home-title">Lurniqo</h1>
+      <p class="home-sub">Choose your university portal</p>
+    </div>
+
+    <div class="portal-grid">
+      <a class="portal-btn" id="btn-anu" href="#">
+        <span class="portal-icon" aria-hidden="true">🏛️</span>
+        <span class="portal-text">
+          <strong>ANU</strong>
+          <small>Acharya Nagarjuna University</small>
+        </span>
+      </a>
+
+      <a class="portal-btn" id="btn-jntuk" href="#">
+        <span class="portal-icon">🎓</span>
+        <span class="portal-text"><strong>JNTUK</strong><small>Coming soon</small></span>
+      </a>
+
+      <a class="portal-btn" id="btn-rvrjc" href="#">
+        <span class="portal-icon">🏫</span>
+        <span class="portal-text"><strong>RVRJC</strong><small>Coming soon</small></span>
+      </a>
+    </div>
+  </main>
+
+  <!-- ANU VIEW -->
+  <section id="view-anu" class="view">
+    <header class="anu-header">
+      <h2>Acharya Nagarjuna University</h2>
+      <p>Select your program</p>
+    </header>
+
+    <div class="programs">
+      <a href="#" id="open-btech" class="big-btn">B.Tech</a>
+      <a href="#" id="open-mtech" class="big-btn alt">M.Tech</a>
+    </div>
+  </section>
+
+  <!-- B.TECH VIEW -->
+  <section id="view-btech" class="view">
+    <div class="bar">
+      <button class="back-btn" id="back-anu">← Back</button>
+      <h2 class="view-title">B.Tech Departments</h2>
+    </div>
+
+    <div class="dep-grid">
+      <a href="#" class="dep-btn">AIML</a>
+      <a href="#" class="dep-btn">CSE</a>
+      <a href="#" class="dep-btn">DS</a>
+      <a href="#" class="dep-btn">CY</a>
+      <a href="#" class="dep-btn">ME</a>
+      <a href="#" class="dep-btn">CE</a>
+      <a href="#" class="dep-btn">EEE</a>
+      <a href="#" class="dep-btn">ECE</a>
+    </div>
+  </section>
+
+  <!-- AIML YEAR -->
+  <section id="view-aiml-year" class="view">
+    <div class="bar">
+      <button class="back-btn" id="back-btech">← Back</button>
+      <h2 class="view-title">AIML — Select Year</h2>
+    </div>
+
+    <form id="aiml-year-form" class="choice-form" role="radiogroup" aria-label="Select Year">
+      <label class="choice-option">
+        <input type="radio" name="year" value="1" />
+        <span>1st Year</span>
+      </label>
+      <label class="choice-option">
+        <input type="radio" name="year" value="2" />
+        <span>2nd Year</span>
+      </label>
+      <label class="choice-option">
+        <input type="radio" name="year" value="3" />
+        <span>3rd Year</span>
+      </label>
+      <label class="choice-option">
+        <input type="radio" name="year" value="4" />
+        <span>4th Year</span>
+      </label>
+
+      <button type="submit" class="submit-btn">Continue</button>
+    </form>
+  </section>
+
+  <!-- AIML SEMESTER -->
+  <section id="view-aiml-sem" class="view">
+    <div class="bar">
+      <button class="back-btn" id="back-aiml-year">← Back</button>
+      <h2 class="view-title">AIML — <span id="aiml-year-label">Year</span> — Select Semester</h2>
+    </div>
+
+    <form id="aiml-sem-form" class="choice-form" role="radiogroup" aria-label="Select Semester">
+      <label class="choice-option">
+        <input type="radio" name="semester" value="1" />
+        <span>Semester 1</span>
+      </label>
+      <label class="choice-option">
+        <input type="radio" name="semester" value="2" />
+        <span>Semester 2</span>
+      </label>
+
+      <button type="submit" class="submit-btn">Continue</button>
+    </form>
+  </section>
+
+  <!-- SUBJECTS -->
+  <section id="view-aiml-subjects" class="view">
+    <div class="bar">
+      <button class="back-btn" id="back-aiml-sem">← Back</button>
+      <h2 class="view-title" id="subjects-title">AIML — 1st Year — Semester 1 — Subjects</h2>
+    </div>
+
+    <div class="subject-grid" id="subjects-grid">
+      <button class="subject-card" data-subject="Mathematics-1">Mathematics-1</button>
+      <button class="subject-card" data-subject="Physics">Physics</button>
+      <button class="subject-card" data-subject="BEE">BEE</button>
+      <button class="subject-card" data-subject="EG">EG</button>
+      <button class="subject-card" data-subject="C">C</button>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    © <span id="year"></span> Lurniqo. All rights reserved.
+  </footer>
+
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
