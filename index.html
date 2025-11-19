@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lurniqo</title>
 
-  <!-- ✅ Favicon (GitHub Hosted) -->
- <link rel="icon" type="image/x-icon" href="./favicon.ico">
-  <!-- Stylesheet (relative path) -->
-  <link rel="stylesheet" href="style.css">
-  <!-- Script: load after parsing -->
-  <script src="script.js" defer></script>
+  <!-- Correct Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Script -->
+  <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -27,16 +27,16 @@
     </nav>
   </header>
 
-  <!-- Compact icon-only sidebar (shown in ANU-related views) -->
+  <!-- Sidebar -->
   <aside class="sidebar compact" id="sidebar" aria-label="Sidebar">
     <a class="brand" href="#" data-route="home" aria-label="Home">
       <div class="logo-badge" title="Home"><span>L</span></div>
     </a>
     <nav class="side-nav" aria-label="Primary">
-      <a href="#" data-route="home" title="Home" aria-label="Home">🏠</a>
-      <a href="#" data-route="syllabus" title="Syllabus" aria-label="Syllabus">📄</a>
-      <a href="#" data-route="faqs" title="FAQs" aria-label="FAQs">❓</a>
-      <a href="#" data-route="about" title="About" aria-label="About">ℹ️</a>
+      <a href="#" data-route="home" title="Home">🏠</a>
+      <a href="#" data-route="syllabus" title="Syllabus">📄</a>
+      <a href="#" data-route="faqs" title="FAQs">❓</a>
+      <a href="#" data-route="about" title="About">ℹ️</a>
     </nav>
   </aside>
 
@@ -50,7 +50,7 @@
 
     <div class="portal-grid">
       <a class="portal-btn" id="btn-anu" href="#">
-        <span class="portal-icon" aria-hidden="true">🏛️</span>
+        <span class="portal-icon">🏛️</span>
         <span class="portal-text">
           <strong>ANU</strong>
           <small>Acharya Nagarjuna University</small>
@@ -82,7 +82,7 @@
     </div>
   </section>
 
-  <!-- B.TECH VIEW -->
+  <!-- B.Tech -->
   <section id="view-btech" class="view">
     <div class="bar">
       <button class="back-btn" id="back-anu">← Back</button>
@@ -101,57 +101,37 @@
     </div>
   </section>
 
-  <!-- AIML YEAR -->
+  <!-- AIML Year -->
   <section id="view-aiml-year" class="view">
     <div class="bar">
       <button class="back-btn" id="back-btech">← Back</button>
       <h2 class="view-title">AIML — Select Year</h2>
     </div>
 
-    <form id="aiml-year-form" class="choice-form" role="radiogroup" aria-label="Select Year">
-      <label class="choice-option">
-        <input type="radio" name="year" value="1" />
-        <span>1st Year</span>
-      </label>
-      <label class="choice-option">
-        <input type="radio" name="year" value="2" />
-        <span>2nd Year</span>
-      </label>
-      <label class="choice-option">
-        <input type="radio" name="year" value="3" />
-        <span>3rd Year</span>
-      </label>
-      <label class="choice-option">
-        <input type="radio" name="year" value="4" />
-        <span>4th Year</span>
-      </label>
-
+    <form id="aiml-year-form" class="choice-form">
+      <label class="choice-option"><input type="radio" name="year" value="1" /><span>1st Year</span></label>
+      <label class="choice-option"><input type="radio" name="year" value="2" /><span>2nd Year</span></label>
+      <label class="choice-option"><input type="radio" name="year" value="3" /><span>3rd Year</span></label>
+      <label class="choice-option"><input type="radio" name="year" value="4" /><span>4th Year</span></label>
       <button type="submit" class="submit-btn">Continue</button>
     </form>
   </section>
 
-  <!-- AIML SEMESTER -->
+  <!-- AIML Semester -->
   <section id="view-aiml-sem" class="view">
     <div class="bar">
       <button class="back-btn" id="back-aiml-year">← Back</button>
       <h2 class="view-title">AIML — <span id="aiml-year-label">Year</span> — Select Semester</h2>
     </div>
 
-    <form id="aiml-sem-form" class="choice-form" role="radiogroup" aria-label="Select Semester">
-      <label class="choice-option">
-        <input type="radio" name="semester" value="1" />
-        <span>Semester 1</span>
-      </label>
-      <label class="choice-option">
-        <input type="radio" name="semester" value="2" />
-        <span>Semester 2</span>
-      </label>
-
+    <form id="aiml-sem-form" class="choice-form">
+      <label class="choice-option"><input type="radio" name="semester" value="1" /><span>Semester 1</span></label>
+      <label class="choice-option"><input type="radio" name="semester" value="2" /><span>Semester 2</span></label>
       <button type="submit" class="submit-btn">Continue</button>
     </form>
   </section>
 
-  <!-- SUBJECTS -->
+  <!-- Subjects -->
   <section id="view-aiml-subjects" class="view">
     <div class="bar">
       <button class="back-btn" id="back-aiml-sem">← Back</button>
