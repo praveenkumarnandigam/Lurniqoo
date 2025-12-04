@@ -24,7 +24,8 @@
       'Physics': driveUrl('https://drive.google.com/file/d/1OaAwotmOL-0Va9M7tJ2xlawQlJFES6xl/view?usp=drive_link'),
       'BEE': driveUrl('https://drive.google.com/file/d/1aMTRzvd2ipUHIqIcLGbT8FGvkZ0Cr8c8/view?usp=drive_link'),
       'EG': driveUrl('https://drive.google.com/file/d/1Ml578a5rIwh_ukqNt40p4S1gQb0wZan6/view?usp=drive_link'),
-      'C': driveUrl('https://drive.google.com/file/d/1RO544NsUs-2GQMEeMcTbx6QwwPJ5hAvZ/view?usp=drive_link')
+      'C': driveUrl('https://drive.google.com/file/d/1RO544NsUs-2GQMEeMcTbx6QwwPJ5hAvZ/view?usp=drive_link'),
+      'Mathematics-3':driveUrl('https://drive.google.com/file/d/1GygOEPiOsohCAr-O2Ns4QFXehtfw9aNY/view?usp=drive_link')
     };
     return {
       'AIML|1st|1': Object.assign({}, set),
