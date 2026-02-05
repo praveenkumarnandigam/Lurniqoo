@@ -5,12 +5,14 @@
   // --- helpers
   function el(id) { return document.getElementById(id); }
   function safeJSONParse(s) { try { return JSON.parse(s); } catch (e) { return null; } }
-  function driveUrl(input) {
-    var s = String(input || '').trim();
-    var m = s.match(/\/d\/([^/]+)/) || s.match(/[?&]id=([^&]+)/);
-    var id = m ? m[1] : null;
-    return id ? 'https://drive.google.com/uc?export=download&id=' + id : s;
-  }
+  function driveUrl(input){
+  var s = String(input || '').trim();
+  var m = s.match(/\/d\/([^/]+)/) || s.match(/[?&]id=([^&]+)/);
+  return m
+    ? 'https://drive.google.com/file/d/' + m[1] + '/preview'
+    : s;
+}
+
 
   // --- storage
   var STORAGE_KEY = 'lurniqo_subject_urls_v1';
