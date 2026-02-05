@@ -15,8 +15,6 @@
 
 // --- helpers
 function el(id) { return document.getElementById(id); }
-function safeJSONParse(s) { ... }
-function driveUrl(input) { ... }
 function closeSubjectViewer(){
   const viewer = el('subject-viewer');
   const frame = el('subject-viewer-frame');
