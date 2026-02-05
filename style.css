@@ -31,20 +31,23 @@ body{
 /* Header */
 
 .site-header{
+  position: sticky;
+  top: 0;
+  z-index: 10;
 
-  position:sticky; top:0; z-index:10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  display:flex; justify-content:center; padding:.6rem 1rem;
+  padding: .6rem 1rem;
 
-  background: color-mix(in srgb, #0a0f1a 70%, transparent);
-
-  backdrop-filter: blur(8px);
-
-  border-bottom:1px solid rgba(255,255,255,.06);
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: none;
 
   transition: opacity .35s ease, transform .35s ease;
-
 }
+
 
 .nav{display:flex; gap:1rem}
 
