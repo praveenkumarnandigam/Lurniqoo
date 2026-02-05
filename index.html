@@ -3,150 +3,144 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lurniqo</title>
-  <link rel="icon" href="./favicon.ico">
+  <title>Lurniqo | Portal</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-   <header class="site-header" id="topbar">
-    <nav class="nav" aria-label="Primary">
+  <header class="site-header" id="topbar">
+    <nav class="nav">
       <a href="#" data-route="home">Home</a>
       <a href="#" data-route="syllabus">Syllabus</a>
-      <a href="#" data-route="faqs">FAQs</a>
       <a href="#" data-route="about">About</a>
     </nav>
-
-    <div style="margin-left:auto; margin-right:1rem;">
-      <button id="open-login" class="submit-btn" style="padding:.45rem .75rem; font-size:.85rem; border-radius:10px;">ADMIN</button>
+    <div class="header-actions">
+      <button id="open-login" class="admin-trigger">ADMIN</button>
     </div>
   </header>
 
   <!-- Sidebar -->
-  <aside class="sidebar compact" id="sidebar" aria-label="Sidebar">
-    <a class="brand" href="#" data-route="home" aria-label="Home">
-      <div class="logo-badge"><span>L</span></div>
-    </a>
-    <nav class="side-nav" aria-label="Primary">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-logo" href="#" data-route="home">L</a>
+    <nav class="side-nav">
       <a href="#" data-route="home" title="Home">🏠</a>
       <a href="#" data-route="syllabus" title="Syllabus">📄</a>
-      <a href="#" data-route="faqs" title="FAQs">❓</a>
       <a href="#" data-route="about" title="About">ℹ️</a>
     </nav>
   </aside>
 
-  <!-- HOME VIEW -->
-  <main id="view-home" class="view active">
-    <div class="home-brand">
-      <div class="logo-tile" id="main-logo"><span style="font-weight:900;font-size:44px;color:#fff">L</span></div>
-      <h1 class="home-title">Lurniqo</h1>
-      <p class="home-sub">Choose your university portal</p>
-    </div>
+  <!-- MAIN CONTENT CONTAINER -->
+  <div class="main-wrapper content-offset">
+    
+    <!-- HOME VIEW -->
+    <main id="view-home" class="view active">
+      <div class="hero-section">
+        <div class="logo-tile" id="main-logo">L</div>
+        <h1 class="home-title">Lurniqo</h1>
+        <p class="home-sub">Select a university to access resources</p>
+      </div>
 
-    <div class="portal-grid">
-      <a class="portal-btn" id="btn-anu" href="#"><span>🏛️</span><div><strong>ANU</strong><div style="font-size:.8rem;color:var(--muted)">Acharya Nagarjuna University</div></div></a>
-      <a class="portal-btn" id="btn-jntuk" href="#"><span>🎓</span><div><strong>JNTUK</strong><div style="font-size:.8rem;color:var(--muted)">Coming soon</div></div></a>
-      <a class="portal-btn" id="btn-rvrjc" href="#"><span>🏫</span><div><strong>RVRJC</strong><div style="font-size:.8rem;color:var(--muted)">Coming soon</div></div></a>
-    </div>
-  </main>
+      <div class="portal-grid">
+        <a class="portal-card" id="btn-anu" href="#">
+          <span class="icon">🏛️</span>
+          <div class="details">
+            <strong>ANU</strong>
+            <small>Acharya Nagarjuna University</small>
+          </div>
+        </a>
+        <a class="portal-card disabled" href="#">
+          <span class="icon">🎓</span>
+          <div class="details">
+            <strong>JNTUK</strong>
+            <small>Coming Soon</small>
+          </div>
+        </a>
+      </div>
+    </main>
 
-  <!-- ANU PORTAL -->
-  <section id="view-anu" class="view content-offset">
-    <header class="anu-header"><h2>Acharya Nagarjuna University</h2><p>Select your program</p></header>
-    <div class="programs">
-        <a id="open-btech" class="big-btn" href="#">B.Tech</a>
-        <a id="open-mtech" class="big-btn" href="#">M.Tech</a>
-    </div>
-  </section>
+    <!-- UNIVERSITY VIEW -->
+    <section id="view-anu" class="view">
+      <div class="view-header">
+        <h2>Acharya Nagarjuna University</h2>
+        <p>Select your program level</p>
+      </div>
+      <div class="action-stack">
+        <a id="open-btech" class="primary-card" href="#">B.Tech Program</a>
+        <a id="open-mtech" class="secondary-card" href="#">M.Tech Program</a>
+      </div>
+    </section>
 
-  <!-- BTECH DEPARTMENTS -->
-  <section id="view-btech" class="view content-offset">
-    <div class="bar"><button class="back-btn" id="back-anu">Back</button><h2>B.Tech Departments</h2></div>
-    <div class="dep-grid">
-      <a class="dep-btn" href="#">AIML</a>
-      <a class="dep-btn" href="#">CSE</a>
-      <a class="dep-btn" href="#">DS</a>
-      <a class="dep-btn" href="#">CY</a>
-      <a class="dep-btn" href="#">ME</a>
-      <a class="dep-btn" href="#">CE</a>
-      <a class="dep-btn" href="#">EEE</a>
-      <a class="dep-btn" href="#">ECE</a>
-    </div>
-  </section>
+    <!-- DEPARTMENTS VIEW -->
+    <section id="view-btech" class="view">
+      <div class="navigation-bar">
+        <button class="icon-back-btn" id="back-anu">←</button>
+        <h2 class="section-title">Departments</h2>
+      </div>
+      <div class="grid-container">
+        <button class="dep-pill">AIML</button>
+        <button class="dep-pill">CSE</button>
+        <button class="dep-pill">DS</button>
+        <button class="dep-pill">CY</button>
+        <button class="dep-pill">ME</button>
+        <button class="dep-pill">CE</button>
+        <button class="dep-pill">EEE</button>
+        <button class="dep-pill">ECE</button>
+      </div>
+    </section>
 
-  <!-- DEPARTMENT: YEAR -->
-  <section id="view-dept-year" class="view content-offset">
-    <div class="bar"><button class="back-btn" id="back-btech">Back</button><h2 class="view-title" id="dept-year-heading">Select Year</h2></div>
-    <form id="dept-year-form" class="choice-form">
-      <label class="choice-option"><input type="radio" name="year" value="1"><span>1st Year</span></label>
-      <label class="choice-option"><input type="radio" name="year" value="2"><span>2nd Year</span></label>
-      <label class="choice-option"><input type="radio" name="year" value="3"><span>3rd Year</span></label>
-      <label class="choice-option"><input type="radio" name="year" value="4"><span>4th Year</span></label>
-      <button type="submit" class="submit-btn">Continue</button>
-    </form>
-  </section>
-
-  <!-- DEPARTMENT: SEM -->
-  <section id="view-dept-sem" class="view content-offset">
-    <div class="bar"><button class="back-btn" id="back-dept-year">Back</button><h2 class="view-title"><span id="dept-sem-heading">Dept</span> — <span id="dept-year-label">Year</span></h2></div>
-    <form id="dept-sem-form" class="choice-form">
-      <label class="choice-option"><input type="radio" name="semester" value="1"><span>Semester 1</span></label>
-      <label class="choice-option"><input type="radio" name="semester" value="2"><span>Semester 2</span></label>
-      <button type="submit" class="submit-btn">Continue</button>
-    </form>
-  </section>
-
-  <!-- DEPARTMENT: SUBJECTS -->
-  <section id="view-dept-subjects" class="view content-offset">
-    <div class="bar"><button class="back-btn" id="back-dept-sem">Back</button><h2 class="view-title" id="subjects-title">Subjects</h2></div>
-    <div class="subject-grid" id="subjects-grid"></div>
-  </section>
-
-  <footer class="site-footer">© <span id="year"></span> Lurniqo. All rights reserved.</footer>
-
-  <!-- LOGIN MODAL -->
-  <div id="login-modal" class="auth-modal" aria-hidden="true">
-    <div class="auth-panel">
-      <header><h3>Admin Login</h3></header>
-      <form id="login-form" class="auth-form">
-        <label>Username <input id="login-user" autocomplete="username" /></label>
-        <label>Password <input id="login-pass" type="password" autocomplete="current-password" /></label>
-        <div style="display:flex;gap:.6rem;margin-top:.5rem;">
-          <button id="login-submit" class="submit-btn" type="submit">Sign in</button>
-          <button id="login-cancel" class="back-btn" type="button">Cancel</button>
-        </div>
+    <!-- YEAR SELECTION -->
+    <section id="view-dept-year" class="view">
+      <div class="navigation-bar">
+        <button class="icon-back-btn" id="back-btech">←</button>
+        <h2 class="section-title" id="dept-year-heading">Select Year</h2>
+      </div>
+      <form id="dept-year-form" class="vertical-choice-list">
+        <label class="list-item"><input type="radio" name="year" value="1"><span>1st Year</span></label>
+        <label class="list-item"><input type="radio" name="year" value="2"><span>2nd Year</span></label>
+        <label class="list-item"><input type="radio" name="year" value="3"><span>3rd Year</span></label>
+        <label class="list-item"><input type="radio" name="year" value="4"><span>4th Year</span></label>
+        <button type="submit" class="cta-button">Continue</button>
       </form>
-    </div>
+    </section>
+
+    <!-- SEMESTER SELECTION -->
+    <section id="view-dept-sem" class="view">
+      <div class="navigation-bar">
+        <button class="icon-back-btn" id="back-dept-year">←</button>
+        <h2 class="section-title"><span id="dept-sem-heading">Dept</span> • <span id="dept-year-label">Year</span></h2>
+      </div>
+      <form id="dept-sem-form" class="vertical-choice-list">
+        <label class="list-item"><input type="radio" name="semester" value="1"><span>Semester 1</span></label>
+        <label class="list-item"><input type="radio" name="semester" value="2"><span>Semester 2</span></label>
+        <button type="submit" class="cta-button">See Subjects</button>
+      </form>
+    </section>
+
+    <!-- SUBJECTS VIEW -->
+    <section id="view-dept-subjects" class="view">
+      <div class="navigation-bar">
+        <button class="icon-back-btn" id="back-dept-sem">←</button>
+        <h2 class="section-title" id="subjects-title">Subjects</h2>
+      </div>
+      <div class="subject-list" id="subjects-grid"></div>
+    </section>
+
+    <footer class="main-footer">
+      © <span id="year"></span> Lurniqo • Your Education Portal
+    </footer>
   </div>
 
-  <!-- ADMIN MODAL -->
-  <div id="admin-modal" class="admin-modal" aria-hidden="true">
-    <div class="admin-panel">
-      <header>
-        <h3>Manage Files</h3>
-        <div style="display:flex;gap:.4rem;">
-          <button id="admin-logout" class="back-btn">Logout</button>
-          <button id="close-admin" class="back-btn">Close</button>
+  <!-- AUTH MODALS (HIDDEN) -->
+  <div id="login-modal" class="modal-overlay">
+    <div class="modal-card">
+      <h3>Admin Access</h3>
+      <form id="login-form">
+        <input id="login-user" placeholder="Username" class="styled-input">
+        <input id="login-pass" type="password" placeholder="Password" class="styled-input">
+        <div class="modal-actions">
+          <button type="submit" class="cta-button">Sign In</button>
+          <button id="login-cancel" type="button" class="text-btn">Cancel</button>
         </div>
-      </header>
-      <section class="admin-form">
-        <label>Dept
-            <select id="admin-dept">
-                <option value="AIML">AIML</option><option value="CSE">CSE</option><option value="DS">DS</option>
-                <option value="CY">CY</option><option value="ME">ME</option><option value="CE">CE</option>
-                <option value="EEE">EEE</option><option value="ECE">ECE</option>
-            </select>
-        </label>
-        <label>Year <select id="admin-year"><option value="1st">1st</option><option value="2nd">2nd</option><option value="3rd">3rd</option><option value="4th">4th</option></select></label>
-        <label>Sem <select id="admin-sem"><option value="1">Sem 1</option><option value="2">Sem 2</option></select></label>
-        <label>Subject Name <input id="admin-subject" placeholder="e.g. Maths" /></label>
-        <label>URL <input id="admin-url" placeholder="Google Drive Link" /></label>
-        <div style="display:flex;gap:.6rem;grid-column: 1 / -1;">
-          <button id="admin-add" class="submit-btn" style="width:auto;">Save Entry</button>
-          <button id="admin-export" class="submit-btn" style="width:auto;background:#222;">Export JSON</button>
-          <button id="admin-import" class="submit-btn" style="width:auto;background:#444;">Import JSON</button>
-        </div>
-      </section>
-      <div id="admin-list-contents" style="max-height:200px;overflow:auto;margin-top:1rem;"></div>
+      </form>
     </div>
   </div>
 
