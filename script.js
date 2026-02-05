@@ -13,6 +13,25 @@
     : s;
 }
 
+// --- helpers
+function el(id) { return document.getElementById(id); }
+function safeJSONParse(s) { ... }
+function driveUrl(input) { ... }
+function closeSubjectViewer(){
+  const viewer = el('subject-viewer');
+  const frame = el('subject-viewer-frame');
+  if(!viewer) return;
+
+  viewer.setAttribute('aria-hidden','true');
+  if(frame) frame.src = '';
+
+  // go back one history step if viewer pushed it
+  if(history.state && history.state.viewer){
+    history.back();
+  }
+}
+
+
 
   // --- storage
   var STORAGE_KEY = 'lurniqo_subject_urls_v1';
@@ -44,6 +63,13 @@
 
   // --- app state
   var state = { currentDept:null, yearLabel:null, semester:null, mode:'home', programmaticScroll:false, inAnim:false };
+
+  window.addEventListener('popstate', function(){
+  const viewer = el('subject-viewer');
+  if(viewer && viewer.getAttribute('aria-hidden') === 'false'){
+    closeSubjectViewer();
+  }
+});
 
   // --- UI helpers
   function setActiveView(id) {
@@ -162,6 +188,8 @@ delegateClick('.subject-card', function(e, btn){
   viewerTitle.textContent = sub;
   viewerFrame.src = url;
   viewer.setAttribute('aria-hidden','false');
+
+  history.pushState({ viewer: true }, '');
 });
 
 if(viewerClose){
@@ -312,6 +340,13 @@ if(viewerClose){
 
   // expose debug hook read-only
   window.Lurniqo = Object.assign({}, window.Lurniqo||{}, { SUBJECT_URLS: SUBJECT_URLS, reloadSubjects: populateSubjectsGrid });
+
+  window.addEventListener('popstate', function () {
+  const viewer = el('subject-viewer');
+  if (viewer && viewer.getAttribute('aria-hidden') === 'false') {
+    closeSubjectViewer();
+  }
+});
 
   // initial view
   setActiveView('view-home');
