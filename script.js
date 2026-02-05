@@ -148,7 +148,10 @@ function closeSubjectViewer(){
 
   // --- delegated click helper
   function delegateClick(selector, handler){ document.addEventListener('click', function(ev){ var t=ev.target; while(t&&t!==document){ if(t.matches&&t.matches(selector)){ handler(ev,t); return } t=t.parentNode; } }); }
-  delegateClick('a[href="#"]', function(e){ e.preventDefault(); });
+delegateClick('a[href="#"]', function(e, el){
+  if (el.id === 'btn-anu') return;
+  e.preventDefault();
+});
 
   // --- main UI wiring
   delegateClick('#btn-anu', function(e){ e.preventDefault(); animateToANU(); });
