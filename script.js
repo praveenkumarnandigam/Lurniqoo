@@ -45,8 +45,17 @@ function closeSubjectViewer(){
       'EG': driveUrl('https://drive.google.com/file/d/1Ml578a5rIwh_ukqNt40p4S1gQb0wZan6/view?usp=drive_link'),
       'C': driveUrl('https://drive.google.com/file/d/1RO544NsUs-2GQMEeMcTbx6QwwPJ5hAvZ/view?usp=drive_link')
     };
+    
     return {
       'AIML|1st|1': Object.assign({}, set),
+      'AIML|1st|2': {
+    'Mathematics-2': '',
+    'Chemistry': '',
+    'English': '',
+    'DE': '',
+    'Python': '',
+    'ES': ''
+  },
       'CSE|1st|1' : Object.assign({}, set),
       'CY|1st|1'  : Object.assign({}, set),
       'DS|1st|1'  : Object.assign({}, set)
