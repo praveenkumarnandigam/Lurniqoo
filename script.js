@@ -9,7 +9,7 @@
   var s = String(input || '').trim();
   var m = s.match(/\/d\/([^/]+)/) || s.match(/[?&]id=([^&]+)/);
   return m
-    ? 'https://drive.google.com/file/d/' + m[1] + '/preview'
+    ? 'https://drive.google.com/file/d/' + m[1] + '/preview?rm=minimal'
     : s;
 }
 
