@@ -7,6 +7,15 @@
   <link rel="icon" href="./favicon.ico">
   <link rel="stylesheet" href="./style.css">
 </head>
+<!-- SUBJECT VIEWER (STEP 1) -->
+<div id="subject-viewer" class="subject-viewer" aria-hidden="true">
+  <div class="subject-viewer-bar">
+    <button id="close-subject-viewer" class="back-btn">Close</button>
+    <span id="subject-viewer-title"></span>
+  </div>
+  <iframe id="subject-viewer-frame" title="Subject Content"></iframe>
+</div>
+
 <body>
   <header class="site-header" id="topbar">
     <nav class="nav" aria-label="Primary">

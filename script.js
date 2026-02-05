@@ -137,7 +137,37 @@
   var yearForm = el('dept-year-form'); if(yearForm) yearForm.addEventListener('submit', function(e){ e.preventDefault(); var chosen = yearForm.querySelector('input[name="year"]:checked'); if(!chosen){ alert('Please select a year'); return } var map={'1':'1st','2':'2nd','3':'3rd','4':'4th'}; state.yearLabel = map[chosen.value] || (chosen.value + 'th'); openDeptSem(); });
   var semForm = el('dept-sem-form'); if(semForm) semForm.addEventListener('submit', function(e){ e.preventDefault(); var chosen = semForm.querySelector('input[name="semester"]:checked'); if(!chosen){ alert('Please select a semester'); return } state.semester = chosen.value; openDeptSubjects(); });
 
-  delegateClick('.subject-card', function(e, btn){ e.preventDefault(); var sub = btn.getAttribute('data-subject'); var key = (state.currentDept||'') + '|' + (state.yearLabel||'') + '|' + (state.semester||''); var url = (SUBJECT_URLS[key] && SUBJECT_URLS[key][sub]) || null; if(!url){ alert('No download link set for ' + sub + ' (' + key + ').'); return } triggerDownload(url, sub + '.pdf'); });
+const viewer = el('subject-viewer');
+const viewerFrame = el('subject-viewer-frame');
+const viewerTitle = el('subject-viewer-title');
+const viewerClose = el('close-subject-viewer');
+
+delegateClick('.subject-card', function(e, btn){
+  e.preventDefault();
+
+  const sub = btn.getAttribute('data-subject');
+  const key =
+    (state.currentDept||'') + '|' +
+    (state.yearLabel||'') + '|' +
+    (state.semester||'');
+
+  const url = SUBJECT_URLS[key]?.[sub];
+  if(!url){
+    alert('No content available');
+    return;
+  }
+
+  viewerTitle.textContent = sub;
+  viewerFrame.src = url;
+  viewer.setAttribute('aria-hidden','false');
+});
+
+if(viewerClose){
+  viewerClose.addEventListener('click', function(){
+    viewer.setAttribute('aria-hidden','true');
+    viewerFrame.src = '';
+  });
+}
 
   window.addEventListener('scroll', function(){ if(state.programmaticScroll||state.inAnim) return; if(state.mode!=='home' && window.scrollY<=20){ setActiveView('view-home'); state.mode='home'; } });
 
