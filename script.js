@@ -184,10 +184,25 @@
     const t = e.target;
 
     if (t.closest('#btn-anu')) {
-      e.preventDefault();
-      animateToANU();
-      return;
-    }
+  e.preventDefault();
+
+  animateToANU();
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const anchor = document.getElementById('btech-anchor');
+      if (anchor) {
+        anchor.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  return;
+}
+
 
     if (t.closest('#open-btech')) {
       e.preventDefault();

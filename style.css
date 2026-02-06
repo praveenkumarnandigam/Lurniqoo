@@ -261,15 +261,14 @@ body.transitioning .home-title, body.transitioning .home-sub, body.transitioning
   display: none;
 }
 
-
-/* Keep logo visible while scrolling on HOME */
-#view-home .home-brand {
-  position: sticky;
-  top: 80px;
-  z-index: 5;
+.view:not(#view-home) .logo-tile {
+  display: none !important;
 }
 
-
+#btech-anchor {
+  height: 1px;
+  margin-top: 40vh;
+}
 
 
 /* Footer */
