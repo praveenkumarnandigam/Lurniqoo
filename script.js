@@ -57,8 +57,32 @@ function closeSubjectViewer(){
     'ES': ''
   },
       'CSE|1st|1' : Object.assign({}, set),
+      'CSE|1st|2': {
+    'Mathematics-2': '',
+    'Chemistry': '',
+    'English': '',
+    'DE': '',
+    'Python': '',
+    'ES': ''
+  },
       'CY|1st|1'  : Object.assign({}, set),
+      'CY|1st|2': {
+    'Mathematics-2': '',
+    'Chemistry': '',
+    'English': '',
+    'DE': '',
+    'Python': '',
+    'ES': ''
+  },
       'DS|1st|1'  : Object.assign({}, set)
+      'DS|1st|2': {
+    'Mathematics-2': '',
+    'Chemistry': '',
+    'English': '',
+    'DE': '',
+    'Python': '',
+    'ES': ''
+  },
     };
   })();
 
