@@ -24,7 +24,8 @@
     'view-dept-year',
     'view-dept-sem',
     'view-dept-subjects',
-    'view-about'
+    'view-about',
+    'view-notifications'
   ];
 
   function setActiveView(viewId) {
@@ -123,6 +124,8 @@
       const r = route.dataset.route;
       if (r === 'home') goHome();
       if (r === 'about') goAbout();
+       if (r === 'notifications') {
+    setActiveView('view-notifications');
       return;
     }
 
