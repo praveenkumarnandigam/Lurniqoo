@@ -24,11 +24,6 @@
       <a href="#" data-route="faqs">FAQs</a>
       <a href="#" data-route="about">About</a>
     </nav>
-
-    <!-- ADMIN button (replaces previous Manage files) -->
-    <div style="margin-left:auto; margin-right:1rem;">
-      <button id="open-login" class="submit-btn" style="padding:.45rem .75rem; font-size:.85rem; border-radius:10px;">ADMIN</button>
-    </div>
   </header>
 
   <!-- Sidebar -->
@@ -104,36 +99,6 @@
 
   <footer class="site-footer">© <span id="year"></span> Lurniqo. All rights reserved.</footer>
 
-  <!-- LOGIN MODAL -->
-  <div id="login-modal" class="auth-modal" aria-hidden="true">
-    <div class="auth-panel">
-      <header><h3>Admin Login</h3></header>
-      <form id="login-form" class="auth-form">
-        <label>Username
-          <input id="login-user" autocomplete="username" placeholder="Username" />
-        </label>
-        <label>Password
-          <input id="login-pass" type="password" autocomplete="current-password" placeholder="Password" />
-        </label>
-        <div style="display:flex;gap:.6rem;margin-top:.5rem;">
-          <button id="login-submit" class="submit-btn" type="submit">Sign in</button>
-          <button id="login-cancel" class="back-btn" type="button">Cancel</button>
-        </div>
-        <p style="color:var(--muted);font-size:.9rem;margin-top:.6rem;">Use admin credentials to manage subjects for AIML, CSE, DS, CY, ME, CE, EEE, ECE.</p>
-      </form>
-    </div>
-  </div>
-
-  <!-- ADMIN MODAL (hidden by default) -->
-  <div id="admin-modal" class="admin-modal" aria-hidden="true">
-    <div class="admin-panel">
-      <header>
-        <h3>Manage subject files</h3>
-        <div style="display:flex;gap:.4rem;align-items:center;">
-          <button id="admin-logout" class="back-btn">Logout</button>
-          <button id="close-admin" class="back-btn">Close</button>
-        </div>
-      </header>
 
       <section class="admin-form">
         <label>Department
