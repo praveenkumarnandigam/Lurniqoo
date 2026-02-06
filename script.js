@@ -6,14 +6,6 @@
     return document.getElementById(id);
   }
 
-  function drivePreviewUrl(input) {
-    const s = String(input || '').trim();
-    const m = s.match(/\/d\/([^/]+)/) || s.match(/[?&]id=([^&]+)/);
-    return m
-      ? 'https://drive.google.com/file/d/' + m[1] + '/preview?rm=minimal'
-      : '';
-  }
-
   /* ---------- SUBJECT DATA ---------- */
   const SUBJECT_URLS = {
     'AIML|1st|1': {
@@ -31,6 +23,7 @@
       'Python': '',
       'ES': ''
     },
+
     'CSE|1st|1': {
       'Mathematics-1': '',
       'Physics': '',
@@ -46,6 +39,7 @@
       'Python': '',
       'ES': ''
     },
+
     'DS|1st|1': {
       'Mathematics-1': '',
       'Physics': '',
@@ -61,6 +55,7 @@
       'Python': '',
       'ES': ''
     },
+
     'CY|1st|1': {
       'Mathematics-1': '',
       'Physics': '',
@@ -101,10 +96,12 @@
       if (node) node.classList.toggle('active', v === id);
     });
 
+    // Sidebar mode only — does NOT touch logo
     document.body.classList.toggle('mode-anu', id !== 'view-home');
   }
 
-  function animateToANU() {
+  /* ---------- NAVIGATION ---------- */
+  function goANU() {
     setActiveView('view-anu');
   }
 
@@ -148,53 +145,30 @@
     Object.keys(subjects).forEach(sub => {
       const btn = document.createElement('button');
       btn.className = 'subject-card';
-      btn.dataset.subject = sub;
       btn.textContent = sub;
       grid.appendChild(btn);
     });
   }
 
-  /* ---------- SUBJECT VIEWER ---------- */
-  const viewer = el('subject-viewer');
-  const viewerFrame = el('subject-viewer-frame');
-  const viewerTitle = el('subject-viewer-title');
-  const viewerClose = el('close-subject-viewer');
-
-  function closeViewer() {
-    viewer.setAttribute('aria-hidden', 'true');
-    viewerFrame.src = '';
-    history.back();
-  }
-
-  viewerClose.addEventListener('click', closeViewer);
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && viewer.getAttribute('aria-hidden') === 'false') {
-      closeViewer();
-    }
-  });
-
-  window.addEventListener('popstate', () => {
-    viewer.setAttribute('aria-hidden', 'true');
-    viewerFrame.src = '';
-  });
-
-  /* ---------- EVENTS (ROBUST) ---------- */
+  /* ---------- EVENTS ---------- */
   document.addEventListener('click', e => {
     const t = e.target;
 
+    /* ANU button */
     if (t.closest('#btn-anu')) {
       e.preventDefault();
-      animateToANU();
+      goANU();
       return;
     }
 
+    /* B.Tech button */
     if (t.closest('#open-btech')) {
       e.preventDefault();
       goBTech();
       return;
     }
 
+    /* Department buttons */
     const deptBtn = t.closest('.dep-btn');
     if (deptBtn) {
       e.preventDefault();
@@ -202,21 +176,11 @@
       return;
     }
 
+    /* Subject buttons */
     const subBtn = t.closest('.subject-card');
     if (subBtn) {
       e.preventDefault();
-      const key = `${state.dept}|${state.year}|${state.sem}`;
-      const url = SUBJECT_URLS[key]?.[subBtn.dataset.subject];
-
-      if (!url) {
-        alert('No content available');
-        return;
-      }
-
-      viewerTitle.textContent = subBtn.dataset.subject;
-      viewerFrame.src = url;
-      viewer.setAttribute('aria-hidden', 'false');
-      history.pushState({ viewer: true }, '');
+      alert(subBtn.textContent + ' clicked');
     }
   });
 

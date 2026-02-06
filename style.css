@@ -251,22 +251,24 @@ body.transitioning .logo-tile{ transform: translate(-44vw, -18vh) scale(.38) rot
 
 body.transitioning .home-title, body.transitioning .home-sub, body.transitioning .portal-grid, body.transitioning #topbar { opacity:0; transform: translateY(-10px); }
 
-/* Logo visible by default */
-.logo-tile {
+/* Logo visibility controlled ONLY by active view */
+#view-home .logo-tile {
   opacity: 1;
   visibility: visible;
   transition: opacity .3s ease, transform .3s ease;
 }
 
-/* Hide logo ONLY when home view is not active */
+/* Hide logo when home view is not active */
 .view:not(.active) .logo-tile {
   display: none;
 }
 
+/* Optional: keep logo visible while swiping */
 #view-home .logo-tile {
   position: sticky;
-  top: 80px;
+  top: 90px;
 }
+
 
 
 /* Footer */
