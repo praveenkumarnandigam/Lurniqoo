@@ -6,6 +6,22 @@
     return document.getElementById(id);
   }
 
+  function hideHomeLogo() {
+    const logo = document.querySelector('#view-home .logo-tile');
+    if (logo) {
+      logo.style.opacity = '0';
+      logo.style.visibility = 'hidden';
+    }
+  }
+
+  function showHomeLogo() {
+    const logo = document.querySelector('#view-home .logo-tile');
+    if (logo) {
+      logo.style.opacity = '1';
+      logo.style.visibility = 'visible';
+    }
+  }
+
   /* ---------- SUBJECT DATA ---------- */
   const SUBJECT_URLS = {
     'AIML|1st|1': {
@@ -96,16 +112,17 @@
       if (node) node.classList.toggle('active', v === id);
     });
 
-    // Sidebar mode only — does NOT touch logo
-    document.body.classList.toggle('mode-anu', id !== 'view-home');
+    if (id === 'view-home') {
+      document.body.classList.remove('mode-anu');
+      showHomeLogo();
+    } else {
+      document.body.classList.add('mode-anu');
+    }
   }
 
   /* ---------- NAVIGATION ---------- */
-  function goANU() {
-    setActiveView('view-anu');
-  }
-
-  function goBTech() {
+  function goToBTechFromANU() {
+    hideHomeLogo();
     setActiveView('view-btech');
   }
 
@@ -154,17 +171,10 @@
   document.addEventListener('click', e => {
     const t = e.target;
 
-    /* ANU button */
+    /* ANU button → DIRECTLY B.Tech */
     if (t.closest('#btn-anu')) {
       e.preventDefault();
-      goANU();
-      return;
-    }
-
-    /* B.Tech button */
-    if (t.closest('#open-btech')) {
-      e.preventDefault();
-      goBTech();
+      goToBTechFromANU();
       return;
     }
 
