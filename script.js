@@ -24,69 +24,17 @@
 
   /* ---------- SUBJECT DATA ---------- */
   const SUBJECT_URLS = {
-    'AIML|1st|1': {
-      'Mathematics-1': '',
-      'Physics': '',
-      'BEE': '',
-      'EG': '',
-      'C': ''
-    },
-    'AIML|1st|2': {
-      'Mathematics-2': '',
-      'Chemistry': '',
-      'English': '',
-      'DE': '',
-      'Python': '',
-      'ES': ''
-    },
+    'AIML|1st|1': { 'Mathematics-1': '', 'Physics': '', 'BEE': '', 'EG': '', 'C': '' },
+    'AIML|1st|2': { 'Mathematics-2': '', 'Chemistry': '', 'English': '', 'DE': '', 'Python': '', 'ES': '' },
 
-    'CSE|1st|1': {
-      'Mathematics-1': '',
-      'Physics': '',
-      'BEE': '',
-      'EG': '',
-      'C': ''
-    },
-    'CSE|1st|2': {
-      'Mathematics-2': '',
-      'Chemistry': '',
-      'English': '',
-      'DE': '',
-      'Python': '',
-      'ES': ''
-    },
+    'CSE|1st|1': { 'Mathematics-1': '', 'Physics': '', 'BEE': '', 'EG': '', 'C': '' },
+    'CSE|1st|2': { 'Mathematics-2': '', 'Chemistry': '', 'English': '', 'DE': '', 'Python': '', 'ES': '' },
 
-    'DS|1st|1': {
-      'Mathematics-1': '',
-      'Physics': '',
-      'BEE': '',
-      'EG': '',
-      'C': ''
-    },
-    'DS|1st|2': {
-      'Mathematics-2': '',
-      'Chemistry': '',
-      'English': '',
-      'DE': '',
-      'Python': '',
-      'ES': ''
-    },
+    'DS|1st|1': { 'Mathematics-1': '', 'Physics': '', 'BEE': '', 'EG': '', 'C': '' },
+    'DS|1st|2': { 'Mathematics-2': '', 'Chemistry': '', 'English': '', 'DE': '', 'Python': '', 'ES': '' },
 
-    'CY|1st|1': {
-      'Mathematics-1': '',
-      'Physics': '',
-      'BEE': '',
-      'EG': '',
-      'C': ''
-    },
-    'CY|1st|2': {
-      'Mathematics-2': '',
-      'Chemistry': '',
-      'English': '',
-      'DE': '',
-      'Python': '',
-      'ES': ''
-    }
+    'CY|1st|1': { 'Mathematics-1': '', 'Physics': '', 'BEE': '', 'EG': '', 'C': '' },
+    'CY|1st|2': { 'Mathematics-2': '', 'Chemistry': '', 'English': '', 'DE': '', 'Python': '', 'ES': '' }
   };
 
   /* ---------- STATE ---------- */
@@ -171,14 +119,12 @@
   document.addEventListener('click', e => {
     const t = e.target;
 
-    /* ANU button → DIRECTLY B.Tech */
     if (t.closest('#btn-anu')) {
       e.preventDefault();
       goToBTechFromANU();
       return;
     }
 
-    /* Department buttons */
     const deptBtn = t.closest('.dep-btn');
     if (deptBtn) {
       e.preventDefault();
@@ -186,7 +132,6 @@
       return;
     }
 
-    /* Subject buttons */
     const subBtn = t.closest('.subject-card');
     if (subBtn) {
       e.preventDefault();
