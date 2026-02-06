@@ -171,6 +171,41 @@ if (id !== 'view-home') {
   }
 
   viewerClose.addEventListener('click', closeViewer);
+/* ---------- BACK BUTTONS ---------- */
+
+// Back from B.Tech → ANU
+if (e.target.closest('#back-anu')) {
+  e.preventDefault();
+  setActiveView('view-anu');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  return;
+}
+
+// Back from Dept-Year → B.Tech
+if (e.target.closest('#back-btech')) {
+  e.preventDefault();
+  state.dept = null;
+  setActiveView('view-btech');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  return;
+}
+
+// Back from Dept-Sem → Dept-Year
+if (e.target.closest('#back-dept-year')) {
+  e.preventDefault();
+  state.sem = null;
+  setActiveView('view-dept-year');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  return;
+}
+
+// Back from Subjects → Dept-Sem
+if (e.target.closest('#back-dept-sem')) {
+  e.preventDefault();
+  setActiveView('view-dept-sem');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  return;
+}
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && viewer.getAttribute('aria-hidden') === 'false') {
