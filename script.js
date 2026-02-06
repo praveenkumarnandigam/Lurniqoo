@@ -2,8 +2,20 @@
   'use strict';
 
   /* ---------- HELPERS ---------- */
-  function el(id) {
-    return document.getElementById(id);
+  const el = id => document.getElementById(id);
+
+  function autoSwipeTo(anchorId) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const anchor = el(anchorId);
+        if (anchor) {
+          anchor.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
   }
 
   /* ---------- SUBJECT DATA ---------- */
@@ -68,38 +80,31 @@
     } else {
       document.body.classList.remove('mode-anu');
     }
-
-    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
-  function animateToANU() {
+  /* ---------- NAVIGATION ---------- */
+  function goANU() {
     setActiveView('view-anu');
-
-    // auto swipe to B.Tech
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        const anchor = el('btech-anchor');
-        if (anchor) {
-          anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
+    autoSwipeTo('anu-anchor');
   }
 
   function goBTech() {
     setActiveView('view-btech');
+    autoSwipeTo('btech-anchor');
   }
 
   function openDeptYear(dept) {
     state.dept = dept;
     el('dept-year-heading').textContent = dept + ' — Select Year';
     setActiveView('view-dept-year');
+    autoSwipeTo('year-anchor');
   }
 
   function openDeptSem() {
     el('dept-sem-heading').textContent = state.dept;
     el('dept-year-label').textContent = state.year + ' Year';
     setActiveView('view-dept-sem');
+    autoSwipeTo('sem-anchor');
   }
 
   function openSubjects() {
@@ -107,6 +112,7 @@
       `${state.dept} — ${state.year} Year — Semester ${state.sem}`;
     setActiveView('view-dept-subjects');
     renderSubjects();
+    autoSwipeTo('subjects-anchor');
   }
 
   /* ---------- SUBJECT GRID ---------- */
@@ -118,7 +124,8 @@
     const subjects = SUBJECT_URLS[key];
 
     if (!subjects) {
-      grid.innerHTML = '<p style="text-align:center;color:#999">No subjects</p>';
+      grid.innerHTML =
+        '<p style="text-align:center;color:#999">No subjects</p>';
       return;
     }
 
@@ -135,21 +142,18 @@
   document.addEventListener('click', e => {
     const t = e.target;
 
-    // ANU
     if (t.closest('#btn-anu')) {
       e.preventDefault();
-      animateToANU();
+      goANU();
       return;
     }
 
-    // B.Tech
     if (t.closest('#open-btech')) {
       e.preventDefault();
       goBTech();
       return;
     }
 
-    // Departments
     const deptBtn = t.closest('.dep-btn');
     if (deptBtn) {
       e.preventDefault();
@@ -157,28 +161,28 @@
       return;
     }
 
-    // Back buttons
     if (t.closest('#back-anu')) {
-      setActiveView('view-anu');
+      goANU();
       return;
     }
 
     if (t.closest('#back-btech')) {
-      setActiveView('view-btech');
+      goBTech();
       return;
     }
 
     if (t.closest('#back-dept-year')) {
       setActiveView('view-dept-year');
+      autoSwipeTo('year-anchor');
       return;
     }
 
     if (t.closest('#back-dept-sem')) {
       setActiveView('view-dept-sem');
+      autoSwipeTo('sem-anchor');
       return;
     }
 
-    // Subject click
     const subBtn = t.closest('.subject-card');
     if (subBtn) {
       alert('Subject clicked: ' + subBtn.dataset.subject);
@@ -190,6 +194,7 @@
     e.preventDefault();
     const v = document.querySelector('input[name="year"]:checked');
     if (!v) return alert('Select year');
+
     state.year = { '1': '1st', '2': '2nd', '3': '3rd', '4': '4th' }[v.value];
     openDeptSem();
   });
@@ -198,6 +203,7 @@
     e.preventDefault();
     const v = document.querySelector('input[name="semester"]:checked');
     if (!v) return alert('Select semester');
+
     state.sem = v.value;
     openSubjects();
   });
@@ -206,7 +212,7 @@
   el('year').textContent = new Date().getFullYear();
   setActiveView('view-home');
 
-  /* ---------- SCROLL SIDEBAR CONTROL ---------- */
+  /* ---------- SIDEBAR / TOPBAR SCROLL CONTROL ---------- */
   window.addEventListener('scroll', () => {
     if (window.scrollY < 40) {
       document.body.classList.remove('mode-anu');
