@@ -263,6 +263,12 @@ body.transitioning .home-title, body.transitioning .home-sub, body.transitioning
   display: none;
 }
 
+#view-home .logo-tile {
+  position: sticky;
+  top: 80px;
+}
+
+
 /* Footer */
 .site-footer{
   text-align: center;
