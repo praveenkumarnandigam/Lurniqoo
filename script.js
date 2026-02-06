@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  /* ---------------- HELPERS ---------------- */
+  /* ---------- HELPERS ---------- */
   function el(id) {
     return document.getElementById(id);
   }
@@ -11,17 +11,17 @@
     const m = s.match(/\/d\/([^/]+)/) || s.match(/[?&]id=([^&]+)/);
     return m
       ? 'https://drive.google.com/file/d/' + m[1] + '/preview?rm=minimal'
-      : s;
+      : '';
   }
 
-  /* ---------------- SUBJECT DATA ---------------- */
+  /* ---------- SUBJECT DATA ---------- */
   const SUBJECT_URLS = {
     'AIML|1st|1': {
-      'Mathematics-1': drivePreviewUrl(''),
-      'Physics': drivePreviewUrl(''),
-      'BEE': drivePreviewUrl(''),
-      'EG': drivePreviewUrl(''),
-      'C': drivePreviewUrl('')
+      'Mathematics-1': '',
+      'Physics': '',
+      'BEE': '',
+      'EG': '',
+      'C': ''
     },
     'AIML|1st|2': {
       'Mathematics-2': '',
@@ -31,7 +31,6 @@
       'Python': '',
       'ES': ''
     },
-
     'CSE|1st|1': {
       'Mathematics-1': '',
       'Physics': '',
@@ -47,7 +46,6 @@
       'Python': '',
       'ES': ''
     },
-
     'DS|1st|1': {
       'Mathematics-1': '',
       'Physics': '',
@@ -63,7 +61,6 @@
       'Python': '',
       'ES': ''
     },
-
     'CY|1st|1': {
       'Mathematics-1': '',
       'Physics': '',
@@ -81,15 +78,14 @@
     }
   };
 
-  /* ---------------- APP STATE ---------------- */
+  /* ---------- STATE ---------- */
   const state = {
     dept: null,
     year: null,
-    sem: null,
-    mode: 'home'
+    sem: null
   };
 
-  /* ---------------- VIEW HANDLING ---------------- */
+  /* ---------- VIEW HANDLING ---------- */
   function setActiveView(id) {
     const views = [
       'view-home',
@@ -108,15 +104,12 @@
     document.body.classList.toggle('mode-anu', id !== 'view-home');
   }
 
-  /* ---------------- NAVIGATION ---------------- */
   function animateToANU() {
     setActiveView('view-anu');
-    state.mode = 'anu';
   }
 
   function goBTech() {
     setActiveView('view-btech');
-    state.mode = 'btech';
   }
 
   function openDeptYear(dept) {
@@ -133,13 +126,12 @@
 
   function openSubjects() {
     el('subjects-title').textContent =
-      state.dept + ' — ' + state.year + ' Year — Semester ' + state.sem;
-
+      `${state.dept} — ${state.year} Year — Semester ${state.sem}`;
     setActiveView('view-dept-subjects');
     renderSubjects();
   }
 
-  /* ---------------- SUBJECT GRID ---------------- */
+  /* ---------- SUBJECT GRID ---------- */
   function renderSubjects() {
     const grid = el('subjects-grid');
     grid.innerHTML = '';
@@ -148,7 +140,7 @@
     const subjects = SUBJECT_URLS[key];
 
     if (!subjects) {
-      grid.innerHTML = '<p style="color:#999;text-align:center">No subjects</p>';
+      grid.innerHTML = '<p style="text-align:center;color:#999">No subjects</p>';
       return;
     }
 
@@ -161,71 +153,72 @@
     });
   }
 
-  /* ---------------- SUBJECT VIEWER ---------------- */
+  /* ---------- SUBJECT VIEWER ---------- */
   const viewer = el('subject-viewer');
   const viewerFrame = el('subject-viewer-frame');
   const viewerTitle = el('subject-viewer-title');
-  const viewerClose = el('close-subject-viewer');
 
-  function closeSubjectViewer() {
+  function closeViewer() {
     viewer.setAttribute('aria-hidden', 'true');
     viewerFrame.src = '';
     history.back();
   }
 
-  viewerClose.addEventListener('click', closeSubjectViewer);
+  el('close-subject-viewer').addEventListener('click', closeViewer);
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && viewer.getAttribute('aria-hidden') === 'false') {
-      closeSubjectViewer();
+      closeViewer();
     }
   });
 
   window.addEventListener('popstate', () => {
-    if (viewer.getAttribute('aria-hidden') === 'false') {
-      viewer.setAttribute('aria-hidden', 'true');
-      viewerFrame.src = '';
-    }
+    viewer.setAttribute('aria-hidden', 'true');
+    viewerFrame.src = '';
   });
 
-  /* ---------------- EVENT DELEGATION ---------------- */
+  /* ---------- EVENTS (FIXED) ---------- */
   document.addEventListener('click', e => {
     const t = e.target;
 
-    if (t.id === 'btn-anu') {
+    if (t.closest('#btn-anu')) {
       e.preventDefault();
       animateToANU();
+      return;
     }
 
-    if (t.id === 'open-btech') {
+    if (t.closest('#open-btech')) {
       e.preventDefault();
       goBTech();
+      return;
     }
 
-    if (t.classList.contains('dep-btn')) {
+    const deptBtn = t.closest('.dep-btn');
+    if (deptBtn) {
       e.preventDefault();
-      openDeptYear(t.textContent.trim());
+      openDeptYear(deptBtn.textContent.trim());
+      return;
     }
 
-    if (t.classList.contains('subject-card')) {
+    const subBtn = t.closest('.subject-card');
+    if (subBtn) {
       e.preventDefault();
       const key = `${state.dept}|${state.year}|${state.sem}`;
-      const url = SUBJECT_URLS[key]?.[t.dataset.subject];
+      const url = SUBJECT_URLS[key]?.[subBtn.dataset.subject];
       if (!url) return alert('No content available');
 
-      viewerTitle.textContent = t.dataset.subject;
+      viewerTitle.textContent = subBtn.dataset.subject;
       viewerFrame.src = url;
       viewer.setAttribute('aria-hidden', 'false');
       history.pushState({ viewer: true }, '');
     }
   });
 
-  /* ---------------- FORMS ---------------- */
+  /* ---------- FORMS ---------- */
   el('dept-year-form').addEventListener('submit', e => {
     e.preventDefault();
     const v = document.querySelector('input[name="year"]:checked');
     if (!v) return alert('Select year');
-
     state.year = { '1': '1st', '2': '2nd', '3': '3rd', '4': '4th' }[v.value];
     openDeptSem();
   });
@@ -234,12 +227,11 @@
     e.preventDefault();
     const v = document.querySelector('input[name="semester"]:checked');
     if (!v) return alert('Select semester');
-
     state.sem = v.value;
     openSubjects();
   });
 
-  /* ---------------- INIT ---------------- */
+  /* ---------- INIT ---------- */
   el('year').textContent = new Date().getFullYear();
   setActiveView('view-home');
 
