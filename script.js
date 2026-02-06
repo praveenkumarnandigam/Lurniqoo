@@ -49,39 +49,39 @@ function closeSubjectViewer(){
     return {
       'AIML|1st|1': Object.assign({}, set),
       'AIML|1st|2': {
-    'Mathematics-2': '',
-    'Chemistry': '',
-    'English': '',
-    'DE': '',
-    'Python': '',
-    'ES': ''
+    'Mathematics-2': driveUrl(''),
+    'Chemistry': driveUrl(''),
+    'English': driveUrl(''),
+    'DE': driveUrl(''),
+    'Python': driveUrl(''),
+    'ES': driveUrl('')
   },
       'CSE|1st|1' : Object.assign({}, set),
       'CSE|1st|2': {
-    'Mathematics-2': '',
-    'Chemistry': '',
-    'English': '',
-    'DE': '',
-    'Python': '',
-    'ES': ''
+    'Mathematics-2': driveUrl(''),
+    'Chemistry': driveUrl(''),
+    'English': driveUrl(''),
+    'DE': driveUrl(''),
+    'Python': driveUrl(''),
+    'ES': driveUrl('')
   },
       'CY|1st|1'  : Object.assign({}, set),
       'CY|1st|2': {
-    'Mathematics-2': '',
-    'Chemistry': '',
-    'English': '',
-    'DE': '',
-    'Python': '',
-    'ES': ''
+    'Mathematics-2': driveUrl(''),
+    'Chemistry': driveUrl(''),
+    'English': driveUrl(''),
+    'DE': driveUrl(''),
+    'Python': driveUrl(''),
+    'ES': driveUrl('')
   },
       'DS|1st|1'  : Object.assign({}, set)
       'DS|1st|2': {
-    'Mathematics-2': '',
-    'Chemistry': '',
-    'English': '',
-    'DE': '',
-    'Python': '',
-    'ES': ''
+    'Mathematics-2': driveUrl(''),
+    'Chemistry': driveUrl(''),
+    'English': driveUrl(''),
+    'DE': driveUrl(''),
+    'Python': driveUrl(''),
+    'ES': driveUrl('')
   },
     };
   })();
