@@ -111,6 +111,30 @@ if (id !== 'view-home') {
   function animateToANU() {
     setActiveView('view-anu');
   }
+  /* ---------- ANU BUTTON (DIRECT, SAFE HANDLER) ---------- */
+const anuBtn = document.getElementById('btn-anu');
+
+if (anuBtn) {
+  anuBtn.addEventListener('click', e => {
+    e.preventDefault();
+
+    animateToANU();
+
+    // auto swipe down to B.Tech
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const anchor = document.getElementById('btech-anchor');
+        if (anchor) {
+          anchor.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  });
+}
+
 
   function goBTech() {
     setActiveView('view-btech');
@@ -222,11 +246,7 @@ if (e.target.closest('#back-dept-sem')) {
   document.addEventListener('click', e => {
     const t = e.target;
 
-    if (t.closest('#btn-anu')) {
-  e.preventDefault();
-
-  animateToANU();
-
+    
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       const anchor = document.getElementById('btech-anchor');
@@ -238,8 +258,6 @@ if (e.target.closest('#back-dept-sem')) {
       }
     });
   });
-
-  return;
 }
 
 
