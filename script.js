@@ -67,7 +67,8 @@
       'view-btech',
       'view-dept-year',
       'view-dept-sem',
-      'view-dept-subjects'
+      'view-dept-subjects',
+      'view-about'
     ];
 
     views.forEach(v => {
@@ -141,6 +142,25 @@
   /* ---------- EVENTS ---------- */
   document.addEventListener('click', e => {
     const t = e.target;
+    /* ---------- TOP NAV ROUTES ---------- */
+const route = t.closest('[data-route]');
+if (route) {
+  e.preventDefault();
+
+  const page = route.dataset.route;
+
+  if (page === 'home') {
+    setActiveView('view-home');
+  }
+
+  if (page === 'about') {
+    setActiveView('view-about');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  return;
+}
+
 
     if (t.closest('#btn-anu')) {
       e.preventDefault();
