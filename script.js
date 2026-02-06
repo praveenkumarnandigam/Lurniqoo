@@ -6,35 +6,76 @@
     return document.getElementById(id);
   }
 
-  function hideHomeLogo() {
-    const logo = document.querySelector('#view-home .logo-tile');
-    if (logo) {
-      logo.style.opacity = '0';
-      logo.style.visibility = 'hidden';
-    }
-  }
-
-  function showHomeLogo() {
-    const logo = document.querySelector('#view-home .logo-tile');
-    if (logo) {
-      logo.style.opacity = '1';
-      logo.style.visibility = 'visible';
-    }
+  function drivePreviewUrl(input) {
+    const s = String(input || '').trim();
+    const m = s.match(/\/d\/([^/]+)/) || s.match(/[?&]id=([^&]+)/);
+    return m
+      ? 'https://drive.google.com/file/d/' + m[1] + '/preview?rm=minimal'
+      : '';
   }
 
   /* ---------- SUBJECT DATA ---------- */
   const SUBJECT_URLS = {
-    'AIML|1st|1': { 'Mathematics-1': '', 'Physics': '', 'BEE': '', 'EG': '', 'C': '' },
-    'AIML|1st|2': { 'Mathematics-2': '', 'Chemistry': '', 'English': '', 'DE': '', 'Python': '', 'ES': '' },
-
-    'CSE|1st|1': { 'Mathematics-1': '', 'Physics': '', 'BEE': '', 'EG': '', 'C': '' },
-    'CSE|1st|2': { 'Mathematics-2': '', 'Chemistry': '', 'English': '', 'DE': '', 'Python': '', 'ES': '' },
-
-    'DS|1st|1': { 'Mathematics-1': '', 'Physics': '', 'BEE': '', 'EG': '', 'C': '' },
-    'DS|1st|2': { 'Mathematics-2': '', 'Chemistry': '', 'English': '', 'DE': '', 'Python': '', 'ES': '' },
-
-    'CY|1st|1': { 'Mathematics-1': '', 'Physics': '', 'BEE': '', 'EG': '', 'C': '' },
-    'CY|1st|2': { 'Mathematics-2': '', 'Chemistry': '', 'English': '', 'DE': '', 'Python': '', 'ES': '' }
+    'AIML|1st|1': {
+      'Mathematics-1': '',
+      'Physics': '',
+      'BEE': '',
+      'EG': '',
+      'C': ''
+    },
+    'AIML|1st|2': {
+      'Mathematics-2': '',
+      'Chemistry': '',
+      'English': '',
+      'DE': '',
+      'Python': '',
+      'ES': ''
+    },
+    'CSE|1st|1': {
+      'Mathematics-1': '',
+      'Physics': '',
+      'BEE': '',
+      'EG': '',
+      'C': ''
+    },
+    'CSE|1st|2': {
+      'Mathematics-2': '',
+      'Chemistry': '',
+      'English': '',
+      'DE': '',
+      'Python': '',
+      'ES': ''
+    },
+    'DS|1st|1': {
+      'Mathematics-1': '',
+      'Physics': '',
+      'BEE': '',
+      'EG': '',
+      'C': ''
+    },
+    'DS|1st|2': {
+      'Mathematics-2': '',
+      'Chemistry': '',
+      'English': '',
+      'DE': '',
+      'Python': '',
+      'ES': ''
+    },
+    'CY|1st|1': {
+      'Mathematics-1': '',
+      'Physics': '',
+      'BEE': '',
+      'EG': '',
+      'C': ''
+    },
+    'CY|1st|2': {
+      'Mathematics-2': '',
+      'Chemistry': '',
+      'English': '',
+      'DE': '',
+      'Python': '',
+      'ES': ''
+    }
   };
 
   /* ---------- STATE ---------- */
@@ -60,17 +101,14 @@
       if (node) node.classList.toggle('active', v === id);
     });
 
-    if (id === 'view-home') {
-      document.body.classList.remove('mode-anu');
-      showHomeLogo();
-    } else {
-      document.body.classList.add('mode-anu');
-    }
+    document.body.classList.toggle('mode-anu', id !== 'view-home');
   }
 
-  /* ---------- NAVIGATION ---------- */
-  function goToBTechFromANU() {
-    hideHomeLogo();
+  function animateToANU() {
+    setActiveView('view-anu');
+  }
+
+  function goBTech() {
     setActiveView('view-btech');
   }
 
@@ -110,18 +148,50 @@
     Object.keys(subjects).forEach(sub => {
       const btn = document.createElement('button');
       btn.className = 'subject-card';
+      btn.dataset.subject = sub;
       btn.textContent = sub;
       grid.appendChild(btn);
     });
   }
 
-  /* ---------- EVENTS ---------- */
+  /* ---------- SUBJECT VIEWER ---------- */
+  const viewer = el('subject-viewer');
+  const viewerFrame = el('subject-viewer-frame');
+  const viewerTitle = el('subject-viewer-title');
+  const viewerClose = el('close-subject-viewer');
+
+  function closeViewer() {
+    viewer.setAttribute('aria-hidden', 'true');
+    viewerFrame.src = '';
+    history.back();
+  }
+
+  viewerClose.addEventListener('click', closeViewer);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && viewer.getAttribute('aria-hidden') === 'false') {
+      closeViewer();
+    }
+  });
+
+  window.addEventListener('popstate', () => {
+    viewer.setAttribute('aria-hidden', 'true');
+    viewerFrame.src = '';
+  });
+
+  /* ---------- EVENTS (ROBUST) ---------- */
   document.addEventListener('click', e => {
     const t = e.target;
 
     if (t.closest('#btn-anu')) {
       e.preventDefault();
-      goToBTechFromANU();
+      animateToANU();
+      return;
+    }
+
+    if (t.closest('#open-btech')) {
+      e.preventDefault();
+      goBTech();
       return;
     }
 
@@ -135,7 +205,18 @@
     const subBtn = t.closest('.subject-card');
     if (subBtn) {
       e.preventDefault();
-      alert(subBtn.textContent + ' clicked');
+      const key = `${state.dept}|${state.year}|${state.sem}`;
+      const url = SUBJECT_URLS[key]?.[subBtn.dataset.subject];
+
+      if (!url) {
+        alert('No content available');
+        return;
+      }
+
+      viewerTitle.textContent = subBtn.dataset.subject;
+      viewerFrame.src = url;
+      viewer.setAttribute('aria-hidden', 'false');
+      history.pushState({ viewer: true }, '');
     }
   });
 
