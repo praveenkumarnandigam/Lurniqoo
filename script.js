@@ -119,15 +119,31 @@
 
     // data-route (topbar & sidebar)
     const route = t.closest('[data-route]');
-    if (route) {
-      e.preventDefault();
-      const r = route.dataset.route;
-      if (r === 'home') goHome();
-      if (r === 'about') goAbout();
-       if (r === 'notifications') {
+if (route) {
+  const r = route.dataset.route;
+
+  // handle ONLY known routes
+  if (r === 'home') {
+    e.preventDefault();
+    goHome();
+    return;
+  }
+
+  if (r === 'about') {
+    e.preventDefault();
+    goAbout();
+    return;
+  }
+
+  if (r === 'notifications') {
+    e.preventDefault();
     setActiveView('view-notifications');
-      return;
-    }
+    return;
+  }
+
+  // ❗ unknown routes → DO NOTHING
+}
+
 
     if (t.closest('#btn-anu')) return e.preventDefault(), goANU();
     if (t.closest('#open-btech')) return e.preventDefault(), goBTech();
