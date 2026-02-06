@@ -101,7 +101,11 @@
       if (node) node.classList.toggle('active', v === id);
     });
 
-    document.body.classList.toggle('mode-anu', id !== 'view-home');
+if (id !== 'view-home') {
+  document.body.classList.add('mode-anu');
+} else {
+  document.body.classList.remove('mode-anu');
+}
   }
 
   function animateToANU() {
@@ -257,5 +261,20 @@
   /* ---------- INIT ---------- */
   el('year').textContent = new Date().getFullYear();
   setActiveView('view-home');
+  /* ---------- SIDEBAR & TOPBAR AUTO CONTROL ---------- */
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+
+    // User scrolled to top → show topbar, hide sidebar
+    if (y < 40) {
+      document.body.classList.remove('mode-anu');
+    }
+
+    // User scrolled down → show sidebar, hide topbar
+    if (y > 80) {
+      document.body.classList.add('mode-anu');
+    }
+  });
 
 })();
