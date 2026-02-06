@@ -140,7 +140,8 @@
     const subjects = SUBJECT_URLS[key];
 
     if (!subjects) {
-      grid.innerHTML = '<p style="text-align:center;color:#999">No subjects</p>';
+      grid.innerHTML =
+        '<p style="text-align:center;color:#999">No subjects available</p>';
       return;
     }
 
@@ -157,6 +158,7 @@
   const viewer = el('subject-viewer');
   const viewerFrame = el('subject-viewer-frame');
   const viewerTitle = el('subject-viewer-title');
+  const viewerClose = el('close-subject-viewer');
 
   function closeViewer() {
     viewer.setAttribute('aria-hidden', 'true');
@@ -164,7 +166,7 @@
     history.back();
   }
 
-  el('close-subject-viewer').addEventListener('click', closeViewer);
+  viewerClose.addEventListener('click', closeViewer);
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && viewer.getAttribute('aria-hidden') === 'false') {
@@ -177,7 +179,7 @@
     viewerFrame.src = '';
   });
 
-  /* ---------- EVENTS (FIXED) ---------- */
+  /* ---------- EVENTS (ROBUST) ---------- */
   document.addEventListener('click', e => {
     const t = e.target;
 
@@ -205,7 +207,11 @@
       e.preventDefault();
       const key = `${state.dept}|${state.year}|${state.sem}`;
       const url = SUBJECT_URLS[key]?.[subBtn.dataset.subject];
-      if (!url) return alert('No content available');
+
+      if (!url) {
+        alert('No content available');
+        return;
+      }
 
       viewerTitle.textContent = subBtn.dataset.subject;
       viewerFrame.src = url;
@@ -219,6 +225,7 @@
     e.preventDefault();
     const v = document.querySelector('input[name="year"]:checked');
     if (!v) return alert('Select year');
+
     state.year = { '1': '1st', '2': '2nd', '3': '3rd', '4': '4th' }[v.value];
     openDeptSem();
   });
@@ -227,6 +234,7 @@
     e.preventDefault();
     const v = document.querySelector('input[name="semester"]:checked');
     if (!v) return alert('Select semester');
+
     state.sem = v.value;
     openSubjects();
   });
