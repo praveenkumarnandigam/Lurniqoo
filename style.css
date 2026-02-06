@@ -254,7 +254,7 @@ body.transitioning .home-title, body.transitioning .home-sub, body.transitioning
 /* Show logo ONLY on home view */
 #view-home.active .logo-tile {
   opacity: 1;
-  visibility: visible;
+  visibility: none;
 }
 
 .view:not(#view-home).active .logo-tile {
