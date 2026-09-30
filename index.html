@@ -168,28 +168,10 @@
     </form>
   </section>
 
-  <!-- ======== SEMESTER SELECTION ======== -->
-  <section id="view-dept-sem" class="view content-offset">
-    <div class="bar" id="sem-anchor">
-      <button class="back-btn" id="back-dept-year">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        Back
-      </button>
-      <h2 class="view-title">
-        <span id="dept-sem-heading">Department</span> — <span id="dept-year-label">Year</span> — Semester
-      </h2>
-    </div>
-    <form id="dept-sem-form" class="choice-form">
-      <label class="choice-option"><input type="radio" name="semester" value="1"><span>Semester 1</span></label>
-      <label class="choice-option"><input type="radio" name="semester" value="2"><span>Semester 2</span></label>
-      <button type="submit" class="submit-btn">Continue →</button>
-    </form>
-  </section>
-
   <!-- ======== SUBJECTS ======== -->
   <section id="view-dept-subjects" class="view content-offset">
     <div class="bar" id="subjects-anchor">
-      <button class="back-btn" id="back-dept-sem">
+      <button class="back-btn" id="back-dept-year">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
         Back
       </button>
@@ -270,9 +252,30 @@
         <p class="about-tagline">Stay updated with important announcements</p>
       </div>
       <ul class="notification-list reveal">
-        <li class="notif-empty">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-          <p>No notifications yet</p>
+        <li class="notif-item" style="background: var(--glass); border: 1px solid var(--border); padding: 1.5rem; border-radius: var(--radius); text-align: left; line-height: 1.6;">
+          <h3 style="color: var(--accent); margin-bottom: 0.8rem; font-family: var(--font-head); font-weight: 800; font-size: 1.2rem;">Important Student Notice — Leap Higher Attendance App</h3>
+          <p style="margin-bottom: 1rem; color: var(--text);">A new app called Leap Higher is currently being circulated among students for student enrollment and attendance-related activities.</p>
+          
+          <div style="background: rgba(255, 80, 80, 0.1); border-left: 4px solid #ff5050; padding: 1rem; margin-bottom: 1.2rem; border-radius: 6px; color: var(--text);">
+            <strong style="color: #ff5050;">Important:</strong> At present, this information has not been officially announced or confirmed by Acharya Nagarjuna University through Lurniqoo. Students are advised not to treat this notification as an official ANU announcement until confirmation is provided by the University/college authorities.
+          </div>
+          
+          <ul style="list-style: none; margin-bottom: 1.2rem; padding: 0; color: var(--text);">
+            <li style="margin-bottom: 0.4rem;"><strong>App:</strong> Leap Higher</li>
+            <li style="margin-bottom: 0.4rem;"><strong>Developer:</strong> RNIT AI Solutions Limited</li>
+            <li style="margin-bottom: 0.4rem;"><strong>Reported purpose:</strong> Student enrollment and attendance management</li>
+          </ul>
+          
+          <p style="margin-bottom: 1.2rem; color: var(--text);">Students should verify any instructions regarding registration, attendance, facial recognition, login credentials, or personal information with their college/department authorities before taking action.</p>
+          
+          <p style="margin-bottom: 1.5rem;">
+            🔗 <strong>Google Play listing:</strong> 
+            <a href="https://play.google.com/store/apps/details?id=com.rnit.ap.che&hl=en_IN" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">View Leap Higher on Google Play</a>
+          </p>
+          
+          <div style="font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 1rem;">
+            <em><strong>Lurniqoo Notice:</strong> This is an informational notice and not an official communication from Acharya Nagarjuna University.</em>
+          </div>
         </li>
       </ul>
     </div>
