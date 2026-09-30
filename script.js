@@ -10,7 +10,7 @@
   }
 
   /* ─── STATE ───────────────────────────────── */
-  const state = { dept: null, year: null, sem: null };
+  const state = { dept: null, year: null };
 
   /* ─── MOBILE MENU ─────────────────────────── */
   const hamburgerBtn = el('hamburger-btn');
@@ -43,7 +43,6 @@
     'view-anu',
     'view-btech',
     'view-dept-year',
-    'view-dept-sem',
     'view-dept-subjects',
     'view-about',
     'view-notifications'
@@ -134,20 +133,9 @@
     }, 120);
   }
 
-  function goSem() {
-    el('dept-sem-heading').textContent = state.dept;
-    el('dept-year-label').textContent = state.year + ' Year';
-    document.querySelectorAll('input[name="semester"]').forEach(r => r.checked = false);
-    setActiveView('view-dept-sem', 'syllabus', true);
-    window.scrollTo(0, 0);
-    setTimeout(() => {
-      el('dept-sem-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 120);
-  }
-
   function goSubjects() {
     el('subjects-title').textContent =
-      `${state.dept} — ${state.year} Year — Sem ${state.sem}`;
+      `${state.dept} — ${state.year} Year`;
     setActiveView('view-dept-subjects', 'syllabus', true);
     window.scrollTo(0, 0);
     setTimeout(() => {
@@ -194,22 +182,57 @@
     const grid = el('subjects-grid');
     grid.innerHTML = '';
 
-    const key      = `${state.dept}|${state.year}|${state.sem}`;
-    const subjects = SUBJECT_URLS[key];
+    const keySem1 = `${state.dept}|${state.year}|1`;
+    const keySem2 = `${state.dept}|${state.year}|2`;
+    const subjectsSem1 = SUBJECT_URLS[keySem1];
+    const subjectsSem2 = SUBJECT_URLS[keySem2];
 
-    if (!subjects || Object.keys(subjects).length === 0) {
+    const hasSem1 = subjectsSem1 && Object.keys(subjectsSem1).length > 0;
+    const hasSem2 = subjectsSem2 && Object.keys(subjectsSem2).length > 0;
+
+    if (!hasSem1 && !hasSem2) {
       grid.innerHTML =
         '<p class="no-subjects">No subjects available yet for this selection.</p>';
       return;
     }
 
-    Object.entries(subjects).forEach(([name, url]) => {
-      const btn = document.createElement('button');
-      btn.className   = 'subject-card';
-      btn.textContent = name;
-      btn.dataset.url = url;
-      grid.appendChild(btn);
-    });
+    if (hasSem1) {
+      const sem1Title = document.createElement('h3');
+      sem1Title.className = 'semester-title';
+      sem1Title.textContent = 'Semester 1';
+      sem1Title.style.gridColumn = '1 / -1';
+      sem1Title.style.color = 'var(--text-main)';
+      sem1Title.style.marginTop = '0.5rem';
+      sem1Title.style.marginBottom = '0.5rem';
+      grid.appendChild(sem1Title);
+
+      Object.entries(subjectsSem1).forEach(([name, url]) => {
+        const btn = document.createElement('button');
+        btn.className   = 'subject-card';
+        btn.textContent = name;
+        btn.dataset.url = url;
+        grid.appendChild(btn);
+      });
+    }
+
+    if (hasSem2) {
+      const sem2Title = document.createElement('h3');
+      sem2Title.className = 'semester-title';
+      sem2Title.textContent = 'Semester 2';
+      sem2Title.style.gridColumn = '1 / -1';
+      sem2Title.style.color = 'var(--text-main)';
+      sem2Title.style.marginTop = '1rem';
+      sem2Title.style.marginBottom = '0.5rem';
+      grid.appendChild(sem2Title);
+
+      Object.entries(subjectsSem2).forEach(([name, url]) => {
+        const btn = document.createElement('button');
+        btn.className   = 'subject-card';
+        btn.textContent = name;
+        btn.dataset.url = url;
+        grid.appendChild(btn);
+      });
+    }
   }
 
   /* ─── SUBJECT VIEWER ──────────────────────── */
@@ -265,7 +288,6 @@
     if (t.closest('#back-anu'))       { e.preventDefault(); goANU();       return; }
     if (t.closest('#back-btech'))     { e.preventDefault(); goBTech();     return; }
     if (t.closest('#back-dept-year')) { e.preventDefault(); setActiveView('view-dept-year', 'syllabus'); return; }
-    if (t.closest('#back-dept-sem'))  { e.preventDefault(); setActiveView('view-dept-sem', 'syllabus');  return; }
 
     /* — Close subject viewer — */
     if (t.closest('#close-subject-viewer')) { closeSubjectViewer(); return; }
@@ -282,14 +304,6 @@
     const v = qs('input[name="year"]:checked');
     if (!v) { showFormError('Please select a year to continue.'); return; }
     state.year = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th' }[v.value];
-    goSem();
-  });
-
-  el('dept-sem-form')?.addEventListener('submit', e => {
-    e.preventDefault();
-    const v = qs('input[name="semester"]:checked');
-    if (!v) { showFormError('Please select a semester to continue.'); return; }
-    state.sem = v.value;
     goSubjects();
   });
 
@@ -349,7 +363,25 @@
     if (!e.target.closest('.mobile-menu-inner')) closeMenu();
   });
 
+  /* ─── NOTIFICATION PERMISSION ─────────────── */
+  function requestNotificationPermission() {
+    if (!("Notification" in window)) {
+      console.log("This browser does not support desktop notification");
+      return;
+    }
+    if (Notification.permission === "default") {
+      Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+          console.log("Notification permission granted.");
+          // Optional: welcome notification
+          // new Notification("Lurniqoo", { body: "You will now receive important updates." });
+        }
+      });
+    }
+  }
+
   /* ─── INIT ────────────────────────────────── */
+  requestNotificationPermission();
   el('year').textContent = new Date().getFullYear();
   setActiveView('view-home', 'home');
 
