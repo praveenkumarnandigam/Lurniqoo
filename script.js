@@ -269,6 +269,12 @@
   function openSubjectViewer(name, url) {
     const viewer = el('subject-viewer');
     el('subject-viewer-title').textContent = name;
+    
+    // Convert Google Drive view links to preview links for iframes
+    if (url && url.includes('drive.google.com') && url.includes('/view')) {
+      url = url.replace(/\/view.*/, '/preview');
+    }
+    
     el('subject-viewer-frame').src = url || 'about:blank';
     viewer.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
