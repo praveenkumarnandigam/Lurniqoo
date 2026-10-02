@@ -147,34 +147,64 @@
   /* ─── SUBJECT DATA ────────────────────────── */
   const SUBJECT_URLS = {
     'AIML|1st|1': {
-      'Mathematics – I':       '',
-      'Physics':               '',
-      'Basic Electrical Engg': '',
-      'Engineering Graphics':  '',
-      'C Programming':         ''
+      'Mathematics – I':       'https://drive.google.com/file/d/1uH1re21YAQyXEzBeHKB_0xFzTcUFNZoz/view?usp=drive_link',
+      'Physics':               'https://drive.google.com/file/d/1OaAwotmOL-0Va9M7tJ2xlawQlJFES6xl/view?usp=drive_link',
+      'Basic Electrical Engg': 'https://drive.google.com/file/d/1aMTRzvd2ipUHIqIcLGbT8FGvkZ0Cr8c8/view?usp=drive_link',
+      'Engineering Graphics':  'https://drive.google.com/file/d/1Ml578a5rIwh_ukqNt40p4S1gQb0wZan6/view?usp=drive_link',
+      'C Programming':         'https://drive.google.com/file/d/1RO544NsUs-2GQMEeMcTbx6QwwPJ5hAvZ/view?usp=drive_link'
     },
     'AIML|1st|2': {
       'Mathematics – II': '',
       'Chemistry':        '',
-      'English':          '',
       'Digital Electronics': '',
       'Python':           '',
-      'Environmental Science': ''
+      'Environmental Science': '',
+      'English' :'https://drive.google.com/file/d/1rY___th3Y6jcdYSdWqHospxD0rEQeVap/view?usp=drive_link'
     },
     'CSE|1st|1': {
-      'Mathematics – I':       '',
-      'Physics':               '',
-      'Basic Electrical Engg': '',
-      'Engineering Graphics':  '',
-      'C Programming':         ''
+      'Mathematics – I':       'https://drive.google.com/file/d/1uH1re21YAQyXEzBeHKB_0xFzTcUFNZoz/view?usp=drive_link',
+      'Physics':               'https://drive.google.com/file/d/1OaAwotmOL-0Va9M7tJ2xlawQlJFES6xl/view?usp=drive_link',
+      'Basic Electrical Engg': 'https://drive.google.com/file/d/1aMTRzvd2ipUHIqIcLGbT8FGvkZ0Cr8c8/view?usp=drive_link',
+      'Engineering Graphics':  'https://drive.google.com/file/d/1Ml578a5rIwh_ukqNt40p4S1gQb0wZan6/view?usp=drive_link',
+      'C Programming':         'https://drive.google.com/file/d/1RO544NsUs-2GQMEeMcTbx6QwwPJ5hAvZ/view?usp=drive_link'
     },
     'CSE|1st|2': {
       'Mathematics – II': '',
       'Chemistry':        '',
-      'English':          '',
       'Digital Electronics': '',
       'Python':           '',
-      'Environmental Science': ''
+      'Environmental Science': '',
+      'English' :''    
+    },
+    'DS|1st|1': {
+      'Mathematics – I':       'https://drive.google.com/file/d/1uH1re21YAQyXEzBeHKB_0xFzTcUFNZoz/view?usp=drive_link',
+      'Physics':               'https://drive.google.com/file/d/1OaAwotmOL-0Va9M7tJ2xlawQlJFES6xl/view?usp=drive_link',
+      'Basic Electrical Engg': 'https://drive.google.com/file/d/1aMTRzvd2ipUHIqIcLGbT8FGvkZ0Cr8c8/view?usp=drive_link',
+      'Engineering Graphics':  'https://drive.google.com/file/d/1Ml578a5rIwh_ukqNt40p4S1gQb0wZan6/view?usp=drive_link',
+      'C Programming':         'https://drive.google.com/file/d/1RO544NsUs-2GQMEeMcTbx6QwwPJ5hAvZ/view?usp=drive_link'
+    },
+    'DS|1st|2': {
+      'Mathematics – II': '',
+      'Chemistry':        '',
+      'Digital Electronics': '',
+      'Python':           '',
+      'Environmental Science': '',
+      'English' :'https://drive.google.com/file/d/1rY___th3Y6jcdYSdWqHospxD0rEQeVap/view?usp=drive_link'
+    },
+    'CY|1st|1': {
+      'Mathematics – I':       'https://drive.google.com/file/d/1uH1re21YAQyXEzBeHKB_0xFzTcUFNZoz/view?usp=drive_link',
+      'Physics':               'https://drive.google.com/file/d/1OaAwotmOL-0Va9M7tJ2xlawQlJFES6xl/view?usp=drive_link',
+      'Basic Electrical Engg': 'https://drive.google.com/file/d/1aMTRzvd2ipUHIqIcLGbT8FGvkZ0Cr8c8/view?usp=drive_link',
+      'Engineering Graphics':  'https://drive.google.com/file/d/1Ml578a5rIwh_ukqNt40p4S1gQb0wZan6/view?usp=drive_link',
+      'C Programming':         'https://drive.google.com/file/d/1RO544NsUs-2GQMEeMcTbx6QwwPJ5hAvZ/view?usp=drive_link'
+    },
+    'CY|1st|2': {
+      'Mathematics – II': '',
+      'Chemistry':        '',
+      'Digital Electronics': '',
+      'Python':           '',
+      'Environmental Science': '',
+      'English' :'https://drive.google.com/file/d/1rY___th3Y6jcdYSdWqHospxD0rEQeVap/view?usp=drive_link'
     }
   };
 
