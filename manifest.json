@@ -1,0 +1,17 @@
+{
+  "name": "Lurniqoo",
+  "short_name": "Lurniqoo",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050B14",
+  "theme_color": "#0A192F",
+  "description": "Your academic portal, simplified.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
