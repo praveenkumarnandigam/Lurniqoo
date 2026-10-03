@@ -75,15 +75,35 @@
   updateClock();
   setInterval(updateClock, 30000);
 
+  let currentViewId = 'view-home';
+
+  function handleScroll() {
+    if (currentViewId === 'view-home') {
+      document.body.classList.remove('mode-anu');
+      return;
+    }
+    if (window.scrollY < 20) {
+      document.body.classList.remove('mode-anu');
+    } else {
+      document.body.classList.add('mode-anu');
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll);
+
   /* ─── SET ACTIVE VIEW ─────────────────────── */
-  function setActiveView(viewId, sideRoute, skipScroll) {
+  function setActiveView(viewId, sideRoute, skipScroll, pushHistory = true) {
+    currentViewId = viewId;
+    if (pushHistory) {
+      history.pushState({ viewId, sideRoute, dept: state.dept, year: state.year }, '', `#${viewId}`);
+    }
+
     ALL_VIEWS.forEach(id => {
       const v = el(id);
       if (v) v.classList.toggle('active', id === viewId);
     });
 
-    const isHome = viewId === 'view-home';
-    document.body.classList.toggle('mode-anu', !isHome);
+    handleScroll();
 
     updateSideLink(sideRoute || null);
     updateMobileActiveLink(sideRoute || null);
@@ -97,12 +117,20 @@
   }
 
   function goAbout() {
-    setActiveView('view-about', 'about');
+    setActiveView('view-about', 'about', true);
+    window.scrollTo(0, 0);
+    setTimeout(() => {
+      qs('.about-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 120);
     initReveal();
   }
 
   function goNotifications() {
-    setActiveView('view-notifications', 'notifications');
+    setActiveView('view-notifications', 'notifications', true);
+    window.scrollTo(0, 0);
+    setTimeout(() => {
+      qs('.notification-list')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 120);
     initReveal();
   }
 
@@ -320,11 +348,6 @@
       return;
     }
 
-    /* — Back buttons — */
-    if (t.closest('#back-anu'))       { e.preventDefault(); goANU();       return; }
-    if (t.closest('#back-btech'))     { e.preventDefault(); goBTech();     return; }
-    if (t.closest('#back-dept-year')) { e.preventDefault(); setActiveView('view-dept-year', 'syllabus'); return; }
-
     /* — Close subject viewer — */
     if (t.closest('#close-subject-viewer')) { closeSubjectViewer(); return; }
   });
@@ -416,9 +439,32 @@
     }
   }
 
+  /* ─── HISTORY API (NATIVE BACK BUTTON) ────── */
+  window.addEventListener('popstate', e => {
+    closeSubjectViewer();
+    if (e.state && e.state.viewId) {
+      state.dept = e.state.dept;
+      state.year = e.state.year;
+      if (state.dept) {
+        const heading = el('dept-year-heading');
+        if (heading) heading.textContent = state.dept + ' — Select Year';
+      }
+      if (state.dept && state.year) {
+        const subTitle = el('subjects-title');
+        if (subTitle) subTitle.textContent = `${state.dept} — ${state.year} Year`;
+        if (e.state.viewId === 'view-dept-subjects') renderSubjects();
+      }
+      setActiveView(e.state.viewId, e.state.sideRoute, false, false);
+    } else {
+      setActiveView('view-home', 'home', false, false);
+    }
+  });
+
   /* ─── INIT ────────────────────────────────── */
   requestNotificationPermission();
   el('year').textContent = new Date().getFullYear();
-  setActiveView('view-home', 'home');
+  
+  history.replaceState({ viewId: 'view-home', sideRoute: 'home', dept: null, year: null }, '', '#view-home');
+  setActiveView('view-home', 'home', false, false);
 
 })();
