@@ -328,6 +328,8 @@ body.mode-anu .sidebar {
 body.mode-anu .content-offset { margin-left: var(--sidebar-w); }
 body.mode-anu .site-footer { margin-left: var(--sidebar-w); }
 
+.content-offset { transition: margin-left .35s cubic-bezier(.4,0,.2,1); }
+
 @media (max-width: 600px) {
   :root { --sidebar-w: 58px; }
 }
@@ -351,6 +353,7 @@ body.mode-anu .site-footer { margin-left: var(--sidebar-w); }
 /* =============================================
    HOME VIEW
    ============================================= */
+#view-home:not(.active) { display: none; }
 #view-home {
   min-height: calc(100vh - 57px);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
